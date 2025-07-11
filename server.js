@@ -16,6 +16,6 @@ app.use('/api', masterRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get('/', (req, res) => res.send('File tersedia di folder uploads!'));
 
-app.listen(port, '192.168.1.16', () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Example app listening on port ${port}!`);
 });
