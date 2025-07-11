@@ -22,6 +22,16 @@ const authModel = async (nim, password) => {
         throw new Error(error.message);
     }
 }
+
+const logoutModel = async (id) => {
+    try {
+        await db.query('UPDATE user_bayar_kampus SET is_login = 0 WHERE id = ?', id);
+        return { success: true, message: 'Logout success' };
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 module.exports = {
     authModel,
     logoutModel
