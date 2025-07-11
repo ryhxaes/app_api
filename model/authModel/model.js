@@ -25,7 +25,7 @@ const authModel = async (nim, password) => {
 
 const logoutModel = async (id) => {
     try {
-        await db.query('UPDATE user SET is_login = 0 WHERE id = ?', id);
+        await db.query('UPDATE user_bayar_kampus SET is_login = 0 WHERE id = ?', id);
         return { success: true, message: 'Logout success' };
     } catch (error) {
         throw new Error(error.message);
