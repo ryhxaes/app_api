@@ -6,7 +6,7 @@ const authModel = async (nim, password) => {
     try {
         const activeTokens = new Map(); // Key-value pair: userId - token
 
-        const users = await db.query('SELECT * FROM user WHERE nim = ? AND password = ?', [nim, password]);
+        const users = await db.query('SELECT * FROM user_bayar_kampus WHERE nim = ? AND password = ?', [nim, password]);
         if (users[0].length > 0) {
             await db.query('UPDATE user SET is_login = 1 WHERE nim = ?', [nim]);
             const token = jwt.sign({ userId: users[0][0].id, nim: users[0][0].nim }, secretKey, { expiresIn: '1h' });
