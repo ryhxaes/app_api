@@ -11,7 +11,7 @@ const getbayarModel = async (id) => {
 
 const historyBayarModel = async (nim, semester) => {
     try {
-        const result = await db.query('SELECT tm.*, t.nama_tagihan FROM tagihan_mahasiswa tm JOIN jenis_tagihan t ON tm.id_tagihan = t.id WHERE tm.nim = ? AND tm.semester = ?', [nim, semester]);
+        const result = await db.query('SELECT tm.*, t.nama_tagihan FROM tagihan_mahasiswa tm JOIN jenis_tagihan t ON tm.id_jenis_tagihan = t.id WHERE tm.nim = ? AND tm.semester = ?', [nim, semester]);
         return result;
     } catch (error) {
         throw new Error(error.message);
