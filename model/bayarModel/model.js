@@ -20,7 +20,7 @@ const historyBayarModel = async (nim, semester) => {
 
 const getBayarById = async (id) => {
     try {
-        const result = await db.query('SELECT tm.*, ubk.nim, ubk.nama, ubk.kelas, ubk.email, ubk.phone FROM tagihan_mahasiswa tm JOIN user_bayar_kampus ubk ON tm.nim = ubk.nim WHERE tm.id = ?', [id]);
+        const result = await db.query('SELECT tm.*, ubk.nim, ubk.name, ubk.kelas, ubk.email, ubk.phone FROM tagihan_mahasiswa tm JOIN user_bayar_kampus ubk ON tm.nim = ubk.nim WHERE tm.id = ?', [id]);
         return result[0];
     } catch (error) {
         throw new Error(error.message);
