@@ -18,7 +18,17 @@ const historyBayarModel = async (nim, semester) => {
     }
 };
 
+const getBayarById = async (id) => {
+    try {
+        const result = await db.query('SELECT * FROM tagihan_mahasiswa WHERE id = ?', [id]);
+        return result[0];
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 module.exports = {
+    getBayarById,
     getbayarModel,
     historyBayarModel
 };

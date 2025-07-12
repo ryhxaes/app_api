@@ -25,7 +25,21 @@ const historyBayarService = async (nim, semester) => {
     }
 };
 
+const getBayarByIdService = async (id) => {
+    try {
+        const result = await bayarModel.getBayarById(id);
+        return {
+            status: 200,
+            message: 'data berhasil ditemukan',
+            content: result
+        };
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 module.exports = {
+    getBayarByIdService,
     getbayarService,
     historyBayarService
 };
