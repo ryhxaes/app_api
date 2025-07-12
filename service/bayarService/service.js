@@ -1,8 +1,8 @@
-const bayarService = require('../../model/bayarModel/model');
+const bayarModel = require('../../model/bayarModel/model');
 
 const getbayarService = async (id) => {
     try {
-        const result = await bayarService.getbayarModel(id);
+        const result = await bayarModel.getbayarModel(id);
         return { 
             status: 200,
             message: 'data berhasil ditemukan', 
@@ -14,7 +14,7 @@ const getbayarService = async (id) => {
 
 const historyBayarService = async (nim, semester) => {
     try {
-        const result = await bayarService.historyBayarController(nim, semester);
+        const result = await bayarModel.historyBayarModel(nim, semester);
         return {
             status: 200,
             message: 'data berhasil ditemukan',

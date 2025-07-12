@@ -9,7 +9,7 @@ const getbayarModel = async (id) => {
     }
 };
 
-const historyBayarController = async (nim, semester) => {
+const historyBayarModel = async (nim, semester) => {
     try {
         const result = await db.query('SELECT * FROM pembayaran WHERE nim = ? AND semester = ?', [nim, semester]);
         return result;
@@ -19,5 +19,6 @@ const historyBayarController = async (nim, semester) => {
 };
 
 module.exports = {
-    getbayarModel
+    getbayarModel,
+    historyBayarModel
 };
