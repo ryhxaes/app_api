@@ -11,7 +11,7 @@ const getbayarModel = async (id) => {
 
 const historyBayarModel = async (nim, semester) => {
     try {
-        const result = await db.query('SELECT * FROM pembayaran WHERE nim = ? AND semester = ?', [nim, semester]);
+        const result = await db.query('SELECT * FROM tagihan_mahasiswa WHERE nim = ? AND semester = ?', [nim, semester]);
         return result;
     } catch (error) {
         throw new Error(error.message);
