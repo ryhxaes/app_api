@@ -7,6 +7,7 @@ router.get('/users/:nim/:password', controllerUser.authController);
 router.get('/logout/:id', controllerUser.logoutController);
 //bayar
 router.get('/getbayar/:id', controllerBayar.getbayarController);
+router.get('/historyBayar/:nim/:semester', controllerBayar.historyBayarController);
 
 
 module.exports = router;

@@ -12,6 +12,20 @@ const getbayarService = async (id) => {
     }
 };
 
+const historyBayarService = async (nim, semester) => {
+    try {
+        const result = await bayarService.historyBayarController(nim, semester);
+        return {
+            status: 200,
+            message: 'data berhasil ditemukan',
+            content: result
+        };
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 module.exports = {
-    getbayarService
+    getbayarService,
+    historyBayarService
 };

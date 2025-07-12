@@ -10,6 +10,18 @@ const getbayarController = async (req, res) => {
     }
 }
 
+const historyBayarController = async (req, res) => {
+    try {
+        const nim = req.params.nim;
+        const semester = req.params.semester;
+        const result = await serviceBayar.historyBayarService(nim, semester);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
-    getbayarController
+    getbayarController,
+    historyBayarController
 }

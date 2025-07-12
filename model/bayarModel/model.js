@@ -9,6 +9,15 @@ const getbayarModel = async (id) => {
     }
 };
 
+const historyBayarController = async (nim, semester) => {
+    try {
+        const result = await db.query('SELECT * FROM pembayaran WHERE nim = ? AND semester = ?', [nim, semester]);
+        return result;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 module.exports = {
     getbayarModel
 };
