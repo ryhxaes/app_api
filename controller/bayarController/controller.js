@@ -37,7 +37,7 @@ const getQrCodeController = async (req, res) => {
         const nim = req.params.nim;
         const jumlah = req.params.jumlah;
         const namaTagihan = req.params.namaTagihan;
-        const result = await serviceBayar.getQrCodeService(id, nim, jumlah, namaTagihan);
+        const result = await serviceBayar.createTransactionService(id, nim, jumlah, namaTagihan);
         if (!result) {
             return res.status(404).json({ message: 'QR Code tidak ditemukan' });
         }

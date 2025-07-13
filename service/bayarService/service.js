@@ -1,5 +1,34 @@
 const bayarModel = require('../../model/bayarModel/model');
 const midtransClient = require('midtrans-client');
+let snap = new midtransClient.Snap({
+    isProduction: false,
+    serverKey: process.env.MIDTRANS_SERVER_KEY
+});
+
+const createTransactionService = async (id, nim, jumlah, namaTagihan) => {
+    try{
+        let parameter = {
+            transaction_details: {
+                order_id: `INV-${id}-${nim}-${Date.now()}`,
+                gross_amount: Number(jumlah),
+                serverKey: process.env.MIDTRANS_SERVER_KEY
+            },
+            customer_details: {
+                first_name: nim,
+                item: namaTagihan
+            }
+        };
+        const transaction = await snap.createTransaction(parameter);
+        return {
+            status: 200,
+            message: 'data berhasil ditemukan',
+            content: transaction
+        };
+    }
+    catch (error) {
+        throw new Error(error.message);
+    }
+}
 
 const getbayarService = async (id) => {
     try {
@@ -38,46 +67,9 @@ const getBayarByIdService = async (id) => {
         throw new Error(error.message);
     }
 };
-
-let snap = new midtransClient.Snap({
-    isProduction: false,
-    serverKey: process.env.MIDTRANS_SERVER_KEY
-});
-
-const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
-    try {
-        // console.log('serverKey:', process.env.MIDTRANS_SERVER_KEY);
-        // const params = {
-        //     transaction_details: {
-        //         order_id: `INV-${id}-${nim}-${Date.now()}`,
-        //         gross_amount: Number(jumlah)
-        //     },
-        //     customer_details: {
-        //         first_name: nim,
-        //         last_name: namaTagihan
-        //     }
-        // };
-        // const transaction = await snap.createTransaction(params);
-        return {
-            message: 'QR Code berhasil dibuat',
-            data: {
-                order_id: `INV-${id}-${nim}-${Date.now()}`,
-                gross_amount: Number(jumlah),
-                first_name: nim,
-                last_name: namaTagihan
-            },
-            // qr_code: transaction.qr_code_url,
-            // token: transaction.token,
-            serverKey: process.env.MIDTRANS_SERVER_KEY
-        };
-    } catch (error) {
-        throw new Error(error.message);
-    }
-};
-
 module.exports = {
     getBayarByIdService,
     getbayarService,
     historyBayarService,
-    getQrCodeService
+    createTransactionService,
 };
