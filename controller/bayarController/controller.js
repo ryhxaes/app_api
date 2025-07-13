@@ -33,7 +33,8 @@ const getBayarByIdController = async (req, res) => {
 
 const getQrCodeController = async (req, res) => {
     try {
-        res.status(200).json({ message: 'QR Code generation is not implemented yet.' });
+        const id = req.params.id;
+        res.status(200).json({ message: 'id berhasil ditemukan', id: id });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
