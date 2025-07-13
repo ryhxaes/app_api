@@ -38,6 +38,16 @@ const getBayarByIdService = async (id) => {
     }
 };
 
+const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
+    try {
+        // const result = await bayarModel.getQrCode(id, nim, jumlah, namaTagihan);
+
+        return { id, nim, jumlah, namaTagihan }; // Placeholder for actual QR code generation logic
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 module.exports = {
     getBayarByIdService,
     getbayarService,

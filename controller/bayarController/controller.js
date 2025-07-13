@@ -37,7 +37,11 @@ const getQrCodeController = async (req, res) => {
         const nim = req.params.nim;
         const jumlah = req.params.jumlah;
         const namaTagihan = req.params.namaTagihan;
-        res.status(200).json({ message: 'id berhasil ditemukan', id: id, nim: nim, jumlah: jumlah, namaTagihan: namaTagihan });
+        const result = await serviceBayar.getQrCodeService(id, nim, jumlah, namaTagihan);
+        if (!result) {
+            return res.status(404).json({ message: 'QR Code tidak ditemukan' });
+        }
+        res.status(200).json({ message: 'QR Code berhasil ditemukan', id: id, nim: nim, jumlah: jumlah, namaTagihan: namaTagihan, qrCode: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
