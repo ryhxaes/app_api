@@ -50,7 +50,7 @@ const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
         const params = {
             transaction_details: {
                 order_id: `INV-${id}-${nim}-${Date.now()}`,
-                gross_amount: jumlah
+                gross_amount: Number(jumlah)
             },
             customer_details: {
                 first_name: nim,
