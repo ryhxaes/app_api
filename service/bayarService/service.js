@@ -45,28 +45,27 @@ let snap = new midtransClient.Snap({
 });
 
 const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
-    return {id, nim, jumlah, namaTagihan, qrCode: 'QR Code placeholder', token: 'Token placeholder' , serverKey: process.env.MIDTRANS_SERVER_KEY};
-    // try {
-    //     const params = {
-    //         transaction_details: {
-    //             order_id: `INV-${id}-${nim}-${Date.now()}`,
-    //             gross_amount: jumlah
-    //         },
-    //         customer_details: {
-    //             first_name: nim,
-    //             last_name: namaTagihan
-    //         }
-    //     };
-    //     const transaction = await snap.createTransaction(params);
-    //     return res.status(200).json({
-    //         message: 'QR Code berhasil dibuat',
-    //         data: transaction,
-    //         qr_code: transaction.qr_code_url,
-    //         token: transaction.token
-    //     });
-    // } catch (error) {
-    //     throw new Error(error.message);
-    // }
+    try {
+        const params = {
+            transaction_details: {
+                order_id: `INV-${id}-${nim}-${Date.now()}`,
+                gross_amount: jumlah
+            },
+            customer_details: {
+                first_name: nim,
+                last_name: namaTagihan
+            }
+        };
+        const transaction = await snap.createTransaction(params);
+        return res.status(200).json({
+            message: 'QR Code berhasil dibuat',
+            data: transaction,
+            qr_code: transaction.qr_code_url,
+            token: transaction.token
+        });
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
 module.exports = {

@@ -41,7 +41,7 @@ const getQrCodeController = async (req, res) => {
         if (!result) {
             return res.status(404).json({ message: 'QR Code tidak ditemukan' });
         }
-        res.status(200).json({ message: 'QR Code berhasil ditemukan 3', id: id, nim: nim, jumlah: jumlah, namaTagihan: namaTagihan, qrCode: result, serverKey: process.env.MIDTRANS_SERVER_KEY });
+        res.status(200).json({ message: 'QR Code berhasil ditemukan', id: id, nim: nim, jumlah: jumlah, namaTagihan: namaTagihan, qrCode: result, serverKey: process.env.MIDTRANS_SERVER_KEY });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
