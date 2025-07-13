@@ -51,5 +51,6 @@ const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
 module.exports = {
     getBayarByIdService,
     getbayarService,
-    historyBayarService
+    historyBayarService,
+    getQrCodeService
 };
