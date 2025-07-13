@@ -34,7 +34,10 @@ const getBayarByIdController = async (req, res) => {
 const getQrCodeController = async (req, res) => {
     try {
         const id = req.params.id;
-        res.status(200).json({ message: 'id berhasil ditemukan', id: id });
+        const nim = req.params.nim;
+        const jumlah = req.params.jumlah;
+        const namaTagihan = req.params.namaTagihan;
+        res.status(200).json({ message: 'id berhasil ditemukan', id: id, nim: nim, jumlah: jumlah, namaTagihan: namaTagihan });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
