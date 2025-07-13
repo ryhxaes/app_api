@@ -58,12 +58,12 @@ const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
             }
         };
         const transaction = await snap.createTransaction(params);
-        return res.status(200).json({
+        return {
             message: 'QR Code berhasil dibuat',
             data: transaction,
             qr_code: transaction.qr_code_url,
             token: transaction.token
-        });
+        };
     } catch (error) {
         throw new Error(error.message);
     }
