@@ -1,4 +1,5 @@
 const bayarModel = require('../../model/bayarModel/model');
+const midtransClient = require('midtrans-client');
 
 const getbayarService = async (id) => {
     try {
@@ -38,15 +39,35 @@ const getBayarByIdService = async (id) => {
     }
 };
 
+let snap = new midtransClient.Snap({
+    isProduction: false,
+    clientKey: process.env.MIDTRANS_CLIENT_KEY,
+    serverKey: process.env.MIDTRANS_SERVER_KEY
+});
+
 const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
     try {
-        // const result = await bayarModel.getQrCode(id, nim, jumlah, namaTagihan);
-
-        return { id, nim, jumlah, namaTagihan }; // Placeholder for actual QR code generation logic
+        const params = {
+            transaction_details: {
+                order_id: `INV-${id}-${nim}-${Date.now()}`,
+                gross_amount: jumlah
+            },
+            customer_details: {
+                first_name: nim,
+                last_name: namaTagihan
+            }
+        };
+        const transaction = await snap.createTransaction(params);
+        return res.status(200).json({
+            message: 'QR Code berhasil dibuat',
+            data: transaction,
+            qr_code: transaction.qr_code_url,
+            token: transaction.token
+        });
     } catch (error) {
         throw new Error(error.message);
     }
-}
+};
 
 module.exports = {
     getBayarByIdService,

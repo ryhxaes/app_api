@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const port = 3000;
 const masterRoute = require('./route/routes');
-
+require('dotenv').config();
 app.use(express.json());
 app.use(cors({
     origin: '*', // Atau ganti dengan asal spesifik seperti 'http://localhost:8080'
