@@ -10,25 +10,33 @@ const createTransactionService = async (id, nim, jumlah, namaTagihan) => {
         let parameter = {
             transaction_details: {
                 order_id: `INV-${id}-${nim}-${Date.now()}`,
-                gross_amount: Number(jumlah),
-                serverKey: process.env.MIDTRANS_SERVER_KEY
+                gross_amount: Number(jumlah)
             },
+            item_details: [
+                {
+                    id: id.toString(),
+                    price: Number(jumlah),
+                    quantity: 1,
+                    name: namaTagihan
+                }
+            ],
             customer_details: {
-                first_name: nim,
-                item: namaTagihan
+                first_name: nim
             }
         };
+
         const transaction = await snap.createTransaction(parameter);
         return {
             status: 200,
-            message: 'data berhasil ditemukan',
+            message: 'berhasil membuat transaksi',
             content: transaction
         };
     }
     catch (error) {
         throw new Error(error.message);
     }
-}
+};
+
 
 const getbayarService = async (id) => {
     try {
