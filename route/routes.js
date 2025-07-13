@@ -9,6 +9,6 @@ router.get('/logout/:id', controllerUser.logoutController);
 router.get('/getbayar/:id', controllerBayar.getbayarController);
 router.get('/historyBayar/:nim/:semester', controllerBayar.historyBayarController);
 router.get('/getBayarById/:id', controllerBayar.getBayarByIdController);
-
+router.get('/getQrCode/:id', controllerBayar.getQrCodeController);
 
 module.exports = router;
