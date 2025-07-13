@@ -44,5 +44,6 @@ const getQrCodeController = async (req, res) => {
 module.exports = {
     getbayarController,
     historyBayarController,
-    getBayarByIdController
+    getBayarByIdController,
+    getQrCodeController
 };
