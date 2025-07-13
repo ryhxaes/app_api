@@ -7,6 +7,7 @@ let snap = new midtransClient.Snap({
 
 const createTransactionService = async (id, nim, jumlah, namaTagihan) => {
     try{
+        console.log('server key', process.env.MIDTRANS_SERVER_KEY);
         let parameter = {
             transaction_details: {
                 order_id: `INV-${id}-${nim}-${Date.now()}`,
