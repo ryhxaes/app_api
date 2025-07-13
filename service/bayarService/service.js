@@ -46,6 +46,7 @@ let snap = new midtransClient.Snap({
 
 const getQrCodeService = async (id, nim, jumlah, namaTagihan) => {
     try {
+        console.log('serverKey:', process.env.MIDTRANS_SERVER_KEY);
         const params = {
             transaction_details: {
                 order_id: `INV-${id}-${nim}-${Date.now()}`,
